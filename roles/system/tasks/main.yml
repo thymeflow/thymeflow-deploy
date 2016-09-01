@@ -1,0 +1,12 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install required system packages
+  apt: pkg={{ item }} state=installed
+  with_items: "{{ system_packages }}"
+
+- name: Start supervisor service
+  service: name=supervisor state=started

@@ -1,0 +1,12 @@
+---
+- name: Clone Project Backend Repository
+  git: repo={{ project_back_repository }}
+       dest={{ project_back_root }}
+       key_file={{ project_ssh_key }}/id_rsa
+       accept_hostkey=yes
+       version={{ project_back_version }}
+
+- name: Compile backend
+  command: "{{ ansible_env.HOME }}/bin/sbt compile"
+  args:
+    chdir: "{{ project_back_root }}"

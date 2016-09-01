@@ -1,0 +1,11 @@
+---
+- name: Download Letsencrypt client
+  git: repo=https://github.com/letsencrypt/letsencrypt.git
+       dest=/root/letsencrypt
+       accept_hostkey=yes
+       update=no
+
+- name: Setup Letsencrypt client
+  command: ./letsencrypt-auto --help
+  args:
+    chdir: /root/letsencrypt

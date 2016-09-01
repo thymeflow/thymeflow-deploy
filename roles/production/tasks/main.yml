@@ -1,0 +1,29 @@
+---
+- name: Generate strong Diffie-Hellman parameters for use in Nginx
+  command: openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+  args:
+    creates: /etc/ssl/certs/dhparam.pem
+
+- name: Ensure log directory exists
+  file: path={{project_logs_path}} state=directory
+
+- name: Configure Nginx to serve production site
+  template: src=production.conf.j2 dest=/etc/nginx/sites-enabled/{{ nginx_server_name }}.conf
+
+- name: Reload nginx
+  service: name=nginx state=reloaded
+
+- name: Configure Thymeflow backend
+  template: src=application.conf.j2 dest={{ project_back_root }}/thymeflow/src/main/resources/application.conf
+
+- name: Install supervisor configuration
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/thymeflow.conf mode=0644 owner={{ ansible_user }}
+  when: is_production
+
+- name: Add backend process to supervisor
+  supervisorctl: name=thymeflow.back state=present
+  when: is_production
+
+- name: Ensure backend process has started
+  supervisorctl: name=thymeflow.back state=restarted
+  when: is_production

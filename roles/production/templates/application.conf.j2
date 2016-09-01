@@ -1,0 +1,32 @@
+thymeflow {
+  converter {
+    email {
+      convert-email-content: false
+    }
+  }
+  http {
+		// URI of the frontend, for managing redirects
+		frontend-uri: "https://{{nginx_server_name}}"
+		// URI of the backend. Trailing slashes are automatically removed.
+		backend-uri: "https://{{nginx_server_name}}/api"
+  }
+  oauth {
+    google: {
+      client-id: {{ google_client_id }}
+      client-secret: {{ google_client_secret }}
+    }
+    microsoft: {
+      client-id: {{ microsoft_client_id }}
+      client-secret: {{ microsoft_client_secret }}
+    }
+    facebook: {
+      client-id: {{ facebook_client_id }}
+      client-secret: {{ facebook_client_secret }}
+    }
+  }
+  geocoder {
+    google: {
+      api-key: {{ google_geocoder_api_key }}
+    }
+  }
+}

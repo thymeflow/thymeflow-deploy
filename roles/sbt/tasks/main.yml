@@ -1,0 +1,12 @@
+---
+- name: Download SBT {{ sbt_version }}
+  get_url: url=https://dl.bintray.com/sbt/native-packages/sbt/{{ sbt_version }}/sbt-{{ sbt_version }}.tgz dest=/tmp/sbt-{{ sbt_version }}.tgz mode=0644
+
+- name: Unpack SBT {{ sbt_version }}
+  unarchive: src=/tmp/sbt-{{ sbt_version }}.tgz dest=~ copy=no
+
+- name: Ensure local bin directory exists
+  file: path=~/bin state=directory
+
+- name: Install SBT launcher in bin directory
+  file: src=~/sbt/bin/sbt dest=~/bin/sbt state=link

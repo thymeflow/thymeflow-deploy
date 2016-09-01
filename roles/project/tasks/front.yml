@@ -1,0 +1,21 @@
+---
+- name: Clone Project Frontend Repository
+  git: repo={{ project_front_repository }}
+       dest={{ project_front_root }}
+       key_file={{ project_ssh_key }}/id_rsa
+       accept_hostkey=yes
+       version={{ project_front_version }}
+
+- include: global_nodejs_dependencies.yml
+
+- name: Install Frontend NPM dependencies
+  npm: path={{project_front_root}} state=present
+
+- name: Install Frontend Bower dependencies
+  bower: path={{project_front_root}} relative_execpath={{npm_config_prefix}}/bin
+
+- name: Build Ember production site
+  shell: "API_ENDPOINT=api {{npm_config_prefix}}/bin/ember build --environment production"
+  when: is_production
+  args:
+    chdir: "{{project_front_root}}"

@@ -1,0 +1,14 @@
+---
+- name: Setup NPM global installation folder
+  command: "npm config set prefix {{ npm_config_prefix }}"
+
+- name: Add npm_config_prefix bin directory to PATH
+  lineinfile: dest=~/.profile line='PATH="{{ npm_config_prefix_bash }}/bin:$PATH"'
+
+- name: Ensure npm global packages are installed.
+  npm:
+    name: "{{ item.name }}"
+    version: "{{ item.version | default('latest') }}"
+    global: yes
+    state: present
+  with_items: "{{ global_nodejs_dependencies }}"

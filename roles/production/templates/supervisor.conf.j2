@@ -1,0 +1,10 @@
+[program:thymeflow.back]
+command={{ ansible_env.HOME }}/bin/sbt thymeflow/run ;
+stopasgroup=true ;
+directory={{project_back_root}} ;
+autostart=true ;
+autorestart=true ;
+stderr_logfile={{project_logs_path}}/back.err.log ;
+stdout_logfile={{project_logs_path}}/back.out.log ;
+user={{ansible_user}} ;
+numprocs=1 ;

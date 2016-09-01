@@ -1,0 +1,12 @@
+---
+- name: Configure nginx to serve ACME challenge response
+  template: src=letsencrypt.conf.j2 dest=/etc/nginx/sites-enabled/{{ nginx_server_name }}.conf force=false
+
+- name: Reload nginx
+  service: name=nginx state=reloaded
+
+- name: Generate letsencrypt cert first time
+  shell: "mkdir -p /tmp/letsencrypt-auto && ./letsencrypt-auto certonly --server https://acme-v01.api.letsencrypt.org/directory -a webroot --webroot-path=/tmp/letsencrypt-auto --email {{letsencrypt_email}} --agree-tos -d {{nginx_server_name}}"
+  args:
+    chdir: /root/letsencrypt
+    creates: "/etc/letsencrypt/live/{{nginx_server_name}}/fullchain.pem"

@@ -1,0 +1,8 @@
+---
+- include: setup_client.yml
+
+- include: generate_certificate.yml
+
+- include: certificate_renewal.yml
+
+

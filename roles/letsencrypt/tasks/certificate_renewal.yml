@@ -1,0 +1,6 @@
+---
+- name: Install letsencrypt renewal script
+  copy: src=letsencrypt-renew.sh dest=/root/letsencrypt-renew.sh owner=root group=root mode=0755
+
+- name: Setup Certificate renewals
+  cron: name="Renew letsencrypt certificates" minute="0" hour="4" weekday="1" job="/root/letsencrypt-renew.sh"
