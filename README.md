@@ -27,7 +27,7 @@ facebook_client_secret: "XXXXXXXXXXXXXXXXXXX"
 google_geocoder_api_key: "XXXXXXXXXXXXXXXXXXX"
 ```
  - Configure a [list of host machines](http://docs.ansible.com/ansible/intro_inventory.html) to deploy to in a `hosts` file.
- - Launch the installation using `ansible -i hosts playbook.yml`.
+ - Launch the installation using `ansible-playbook -i hosts playbook.yml`.
 
 ## Production setup
 
