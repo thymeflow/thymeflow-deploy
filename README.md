@@ -37,7 +37,7 @@ If deploying from your own repository, also add the following variables to your 
 ```
 project_back_repository: CUSTOM_THYMEFLOW_BACK_REPOSITORY.git
 project_front_repository: CUSTOM_THYMEFLOW_FRONT_REPOSITORY.git
-```.
+```
 
 ## Production setup
 
