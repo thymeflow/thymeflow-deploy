@@ -29,6 +29,16 @@ google_geocoder_api_key: "XXXXXXXXXXXXXXXXXXX"
  - Configure a [list of host machines](http://docs.ansible.com/ansible/intro_inventory.html) to deploy to in a `hosts` file.
  - Launch the installation using `ansible-playbook -i hosts playbook.yml`.
 
+## Notes
+
+If deploying on `localhost`, make sure you run `ansible-playbook` with `--ask-sudo-pass` instead of running it with `sudo`. Otherwise the permissions will not be set correctly and your the application will not work properly.
+The script assumes that the target machine has access rights to the Thymeflow repositories, especially using passwordless ssh authentication.
+If deploying from your own repository, also add the following variables to your `application.yml`.
+```
+project_back_repository: CUSTOM_THYMEFLOW_BACK_REPOSITORY.git
+project_front_repository: CUSTOM_THYMEFLOW_FRONT_REPOSITORY.git
+```.
+
 ## Production setup
 
 For a production deployment, also provide the following variables:
