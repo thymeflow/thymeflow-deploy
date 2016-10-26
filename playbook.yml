@@ -17,11 +17,11 @@
     project_back_port: 8080
     project_back_repository: git@github.com:thymeflow/thymeflow-back.git
     project_back_root: "{{ ansible_env.HOME }}/repositories/thymeflow-back"
-    project_back_version: master
+    project_back_version: v0.1.0
     project_front_repository: git@github.com:thymeflow/thymeflow-front.git
     project_front_root: "{{ ansible_env.HOME }}/repositories/thymeflow-front"
     project_logs_path: "{{ ansible_env.HOME }}/logs"
-    project_front_version: master
+    project_front_version: v0.1.0
     nginx_events_params:
      - worker_connections 512
      - use epoll
