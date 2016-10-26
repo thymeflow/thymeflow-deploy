@@ -39,6 +39,12 @@ project_back_repository: CUSTOM_THYMEFLOW_BACK_REPOSITORY.git
 project_front_repository: CUSTOM_THYMEFLOW_FRONT_REPOSITORY.git
 ```
 
+The script will deploy the same release version of the frontend and backend repositories as this script's. This way, we can ensure that there exists a version of the deploy script for each backend/frontend release. If you know what you are doing, you may want to override this setting in your `application.yml`:
+```
+project_back_version: BRANCH_NAME/TAG/COMMIT_NUMBER
+project_front_version: BRANCH_NAME/TAG/COMMIT_NUMBER
+```
+
 ## Production setup
 
 For a production deployment, also provide the following variables:
