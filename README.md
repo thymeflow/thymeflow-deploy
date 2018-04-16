@@ -1,3 +1,5 @@
+:warning: __This repository is DEPRECATED. It is the first version of Thymeflow's deploy script. The new script, based on Docker Compose can be found at https://github.com/thymeflow/thymeflow.__
+
 # thymeflow-deploy
 
 `thymeflow-deploy` makes it much easier to deploy a [Thymeflow](https://thymeflow.com) app on a server.
